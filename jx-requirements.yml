@@ -1,25 +1,68 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  environmentGitPublic: false
-  project: ""
+  clusterName: europe-west4-test-jenkinsx-cluster
+  devEnvApprovers:
+  - vovkanaz
+  environmentGitOwner: uklon
+  environmentGitPublic: true
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  project: nonprod-env
   provider: gke
-  zone: ""
-gitops: true
+  registry: gcr.io
+  zone: europe-west4
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    domain: jenkins-x.uklon.net
+    externalDNS: false
+    namespaceSubDomain: -jx.
+    tls:
+      email: volodymyr.nazarko@uklon.com.uas
+      enabled: true
+      production: false
+  key: dev
+  repository: environment-europe-west4-test-jenkinsx-cluster-dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+  repository: environment-europe-west4-test-jenkinsx-cluster-staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+  repository: environment-europe-west4-test-jenkinsx-cluster-production
+gitops: true
 ingress:
-  domain: ""
+  domain: jenkins-x.uklon.net
   externalDNS: false
+  namespaceSubDomain: -jx.
   tls:
-    email: ""
-    enabled: false
+    email: volodymyr.nazarko@uklon.com.uas
+    enabled: true
     production: false
 kaniko: true
+repository: nexus
 secretStorage: local
 storage:
+  backup:
+    enabled: false
+    url: ""
   logs:
     enabled: false
     url: ""
@@ -29,7 +72,11 @@ storage:
   repository:
     enabled: false
     url: ""
+vault: {}
+velero:
+  schedule: ""
+  ttl: ""
 versionStream:
-  ref: "master"
+  ref: v1.0.610
   url: https://github.com/jenkins-x/jenkins-x-versions.git
 webhook: lighthouse

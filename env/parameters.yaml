@@ -1,0 +1,10 @@
+adminUser:
+  password: local:europe-west4-test-jenkinsx-cluster/adminUser:password
+  username: admin
+enableDocker: false
+pipelineUser:
+  email: volodymyr.nazarko@uklon.com.ua
+  token: local:europe-west4-test-jenkinsx-cluster/pipelineUser:token
+  username: uklonchik-bot
+prow:
+  hmacToken: local:europe-west4-test-jenkinsx-cluster/prow:hmacToken
